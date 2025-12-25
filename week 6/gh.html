@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POJ</title>
+    <style>
+        /* Umumiy stillar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header va navigatsiya */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 30px;
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: #3498db;
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero bo'limi */
+        .hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #fff;
+            color: #667eea;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Bo'limlar */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #7f8c8d;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Xizmatlar */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 40px;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        /* Loyihalar */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .project-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .project-img {
+            height: 200px;
+            background-color: #3498db;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .project-info {
+            padding: 20px;
+            background: white;
+        }
+        
+        .project-info h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        /* Blog */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .blog-img {
+            height: 200px;
+            background-color: #9b59b6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-content h3 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .blog-meta {
+            display: flex;
+            margin-bottom: 15px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .blog-date {
+            margin-right: 15px;
+        }
+        
+        /* Aloqa */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin-right: 10px;
+            color: white;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-link:hover {
+            background-color: #3498db;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsiv dizayn */
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+                padding: 20px 0;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 15px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header va navigatsiya -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">POJ</a>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="#" class="nav-link">Bosh sahifa</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">Men haqimda</a></li>
+                    <li class="nav-item"><a href="#services" class="nav-link">Xizmatlar</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link">Loyihalar</a></li>
+                    <li class="nav-item"><a href="#blog" class="nav-link">Blog</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Aloqa</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero bo'limi -->
+    <section class="hero">
+        <div class="container">
+            <h1>Salom, men Jur'atbek Otaboyevman</h1>
+            <p>Veb-dizayn, dasturlash bo'yicha mutaxassis. Yangi va innovatsion g'oyalarni amalga oshirishga yordam beraman.</p>
+            <a href="#contact" class="btn">Bog'lanish</a>
+        </div>
+    </section>
+
+    <!-- Men haqimda bo'limi -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Men haqimda</h2>
+                <p>Mening ishim va tajribam haqida qisqacha ma'lumot</p>
+            </div>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="margin-bottom: 20px;">Men veb-dizayn va dasturlash sohasida 1 yildan ortiq tajribaga ega mutaxassis hisoblanaman. Turli xil murakkablikdagi loyihalarni amalga oshirishda keng tajribam mavjud.</p>
+                <p style="margin-bottom: 20px;">Har bir loyihaga individual yondashaman va mijozlarimning ehtiyojlariga mos echimlarni taklif qilaman. Mening maqsadim - sifatli, zamonaviy va foydalanuvchilar uchun qulay veb-saytlar yaratish.</p>
+                <p>Doimiy ravishda o'z bilimlarimni yangilab, yangi texnologiyalarni o'rganib boraman. Bu mening mijozlarimga eng zamonaviy va samarali echimlarni taklif qilishimga imkon beradi.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Xizmatlar bo'limi -->
+    <section id="services" style="background-color: #f5f7fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Xizmatlar</h2>
+                <p>Men taklif qiladigan asosiy xizmatlar</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Veb-dizayn</h3>
+                    <p>Zamonaviy, foydalanuvchilar uchun qulay va jozibador veb-saytlar yaratish.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Veb-dasturlash</h3>
+                    <p>Turli xil murakkablikdagi veb-ilovalar va platformalarni ishlab chiqish.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Mobil ilovalar</h3>
+                    <p>iOS va Android operatsion tizimlari uchun mobil ilovalar yaratish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loyihalar bo'limi -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Loyihalar</h2>
+                <p>Mening so'ngi ishlab chiqarilgan loyihalarim</p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">Loyiha 1 rasmi</div>
+                    <div class="project-info">
+                        <h3>E-ticaret platformasi</h3>
+                        <p>Yirik onlayn do'kon loyihasi, to'liq funksional veb-ilova.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">Loyiha 2 rasmi</div>
+                    <div class="project-info">
+                        <h3>Korporativ veb-sayt</h3>
+                        <p>Yirik kompaniya uchun zamonaviy korporativ veb-sayt.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-img">Loyiha 3 rasmi</div>
+                    <div class="project-info">
+                        <h3>Mobil ilova</h3>
+                        <p>Startap uchun innovatsion mobil ilova ishlab chiqish.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog bo'limi -->
+    <section id="blog" style="background-color: #f5f7fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Blog</h2>
+                <p>So'ngi maqola va yangiliklar</p>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-img">Maqola rasmi</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">15 May, 2023</span>
+                            <span class="blog-category">Veb-dizayn</span>
+                        </div>
+                        <h3>2023 yil veb-dizayn trendlari</h3>
+                        <p>Yilning eng dolzarb veb-dizayn trendlari va ularni qanday qo'llash kerak.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-img">Maqola rasmi</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">2 Aprel, 2023</span>
+                            <span class="blog-category">Dasturlash</span>
+                        </div>
+                        <h3>React.js da yangi imkoniyatlar</h3>
+                        <p>React.js ning so'nggi versiyasidagi yangi xususiyatlar va ularning afzalliklari.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-img">Maqola rasmi</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">20 Mart, 2023</span>
+                            <span class="blog-category">SEO</span>
+                        </div>
+                        <h3>SEO bo'yicha eng yaxshi amaliyotlar</h3>
+                        <p>Veb-saytingizni qidiruv tizimlarida yuqori pog'onaga olib chiqish sirlari.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Aloqa bo'limi -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Aloqa</h2>
+                <p>Menga xabar qoldiring, men siz bilan tez orada bog'lanaman</p>
+            </div>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Ism</label>
+                        <input type="text" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Mavzu</label>
+                        <input type="text" id="subject" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Xabar</label>
+                        <textarea id="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="background-color: #3498db; color: white; width: 100%;">Xabarni yuborish</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Otaboyev</h3>
+                    <p>Veb-dizayn, dasturlash va digital marketing bo'yicha mutaxassis.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">f</a>
+                        <a href="#" class="social-link">t</a>
+                        <a href="#" class="social-link">in</a>
+                        <a href="#" class="social-link">ig</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Tez havolalar</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Bosh sahifa</a></li>
+                        <li><a href="#about">Men haqimda</a></li>
+                        <li><a href="#services">Xizmatlar</a></li>
+                        <li><a href="#projects">Loyihalar</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Xizmatlar</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Veb-dizayn</a></li>
+                        <li><a href="#">Veb-dasturlash</a></li>
+                        <li><a href="#">Mobil ilovalar</a></li>
+                        <li><a href="#">SEO</a></li>
+                        <li><a href="#">Digital Marketing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Aloqa</h3>
+                    <ul class="footer-links">
+                        <li>Email: jotaboyev0717@gmail.com</li>
+                        <li>Telefon: +998 50 222 39 66</li>
+                        <li>Manzil: Toshkent, O'zbekiston, Urgench</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Otaboyev. Barcha huquqlar himoyalangan.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger menyusi uchun JavaScript
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Navbar linklarini bosganda menyuni yopish
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+        
+        // Form yuborish
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Xabaringiz yuborildi! Tez orada siz bilan bog\'lanaman.');
+            this.reset();
+        });
+        
+        // Scroll animatsiyasi
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            header.classList.toggle('sticky', window.scrollY > 0);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+OFFICIAL ELECTION RESULTS
+-------------------------
+Alice: 3 votes (42.9%)
+Bob: 2 votes (28.6%)
+Charlie: 1 votes (14.3%)
+David: 1 votes (14.3%)
+
+-------------------------
+Total Valid Votes: 7
+WINNER: Alice
